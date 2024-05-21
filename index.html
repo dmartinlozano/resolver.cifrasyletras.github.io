@@ -1,0 +1,133 @@
+<!DOCTYPE html lang="es">
+
+<head>
+    <title>Resolver Cifras y Letras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Resuelve el juego Cifras y Letras">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="cyan" />
+    <meta name="google-adsense-account" content="ca-pub-2356567245089585">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/letters.js"></script>
+    <script src="js/numbers.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            M.AutoInit();
+
+            //user agent checked
+            const isStandalone = (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone);
+            if (isStandalone){
+                //PWA already installed
+            }else{
+                const pwaAndroidModal = M.Modal.init(document.getElementById("install-pwa-android"), {});
+                const pwaIOSModal = M.Modal.init(document.getElementById("install-pwa-ios"), {});
+                const pwaModal = M.Modal.init(document.getElementById("install-pwa"), {});
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                if (/android/i.test(userAgent)){
+                    pwaAndroidModal.open();
+                }else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
+                    pwaIOSModal.open();
+                }else {
+                    pwaModal.open();
+                }
+            }
+        });
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function (registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(function (error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2356567245089585"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="install-pwa-android" class="modal">
+        <div class="modal-content">
+          <h4>Instalar</h4>
+          <p>Si quieres, puedes instalar esta aplicación en tu dispositivo y tenerla siempre disponible.</p>
+          <p>Accede al menu de configuración de tu navegador, selecciona 'Añadir a pantalla de inicio' y selecciona 'Instalar'.</p>
+          <img src="pwa2.png" width="100px"/>
+          <img src="pwa3.png" width="200px"/>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+        </div>
+    </div>
+    <div id="install-pwa-ios" class="modal">
+        <div class="modal-content">
+          <h4>Instalar</h4>
+          <p>Si quieres, puedes instalar esta aplicación en tu dispositivo y tenerla siempre disponible.</p>
+          <p>Selecciona el botón 'compartir', selecciona 'Añadir a pantalla de inicio' y selecciona 'Instalar'.</p>
+          <img src="pwa4.png" width="40px"/>
+          <img src="pwa5.png" width="200px"/>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+        </div>
+    </div>
+    <div id="install-pwa" class="modal">
+        <div class="modal-content">
+          <h4>Instalar</h4>
+          <p>Si quieres, puedes instalar esta aplicación y tenerla siempre disponible.</p>
+          <p>Selecciona esta opcion en la barra de tu navegador y selecciona instalar.</p>
+          <img src="pwa1.png"/>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col s12 m7">
+            <h2 class="header">Letras</h2>
+            <div class="card horizontal">
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <input class="input" type="text" id="lettersInput" placeholder="Solo letras(sin espacios)">
+                        <div id="lettersResult"></div>
+                    </div>
+                    <div class="card-action">
+                        <button class="waves-effect waves-light btn" id="processLettersButton"
+                            onclick="processLetters()">Procesar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m7">
+            <h2 class="header">Números</h2>
+            <div class="card horizontal">
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <input class="input" type="text" id="numbersInput" inputmode="numeric" pattern="[0-9\s]*"
+                            placeholder="Numeros (separados por blancos)">
+                        <input class="input" type="text" id="targetInput" inputmode="numeric" pattern="[0-9\s]*"
+                            placeholder="Numero a obtener">
+                        <div id="closestResult"></div>
+                    </div>
+                    <div class="card-action">
+                        <button class="waves-effect waves-light btn" id="processNumbersButton"
+                            onclick="processNumber()">Procesar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2356567245089585" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-2356567245089585" data-ad-slot="1221900874"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+
+</html>

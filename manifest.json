@@ -1,0 +1,51 @@
+{
+    "name": "Resolver Cifras y Letras",
+    "short_name": "Resolver_Cifras_y_Letras",
+    "start_url": "https://resolver-cifrasyletras.github.io/",
+    "description": "Resolver juego Cifras y Letras",
+    "id": "com.dmlv.resolver-cifrasyletras",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "launch_handler": {
+        "client_mode": "auto"
+    },
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "/icon-1024x1024.png",
+            "sizes": "1024x1024",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "screenshots" : [
+        {
+          "src": "ss1.jpeg",
+          "sizes": "1080x1571",
+          "type": "image/jpeg",
+          "form_factor": "wide",
+          "label": "ss1"
+        },
+        {
+          "src": "ss2.jpeg",
+          "sizes": "2048x914",
+          "type": "image/jpeg",
+          "form_factor": "wide",
+          "label": "ss2"
+        }
+    ],
+    "categories": ["gaming"]
+}
